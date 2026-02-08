@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-/* 🌑 DARK LIGHT-BLACK BACKGROUND */
 body{
   font-family: Arial, sans-serif;
   padding:20px;
@@ -21,7 +20,6 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* INVOICE CARD */
 .invoice{
   max-width:1000px;
   margin:auto;
@@ -32,14 +30,12 @@ body{
   color:#e5e7eb;
 }
 
-/* COMPANY TITLE */
 h2{
   margin:0 0 14px;
   font-size:30px;
   color:#f8fafc;
 }
 
-/* FORM */
 .row{display:flex;gap:15px;flex-wrap:wrap}
 .col{flex:1;min-width:220px}
 label{font-size:12px;font-weight:bold;color:#cbd5e1}
@@ -53,12 +49,10 @@ input,textarea,select{
   color:#f8fafc;
 }
 
-/* TABLE */
 table{width:100%;border-collapse:collapse;margin-top:18px}
 th,td{border:1px solid #303036;padding:9px;text-align:center}
 th{background:#1f1f23}
 
-/* BUTTONS */
 .btn{
   padding:10px 22px;
   border-radius:14px;
@@ -73,7 +67,6 @@ th{background:#1f1f23}
 
 .btn.gray{background:#111}
 
-/* ❌ REMOVE BUTTON */
 .remove-btn{
   background:#111;
   color:#f87171;
@@ -82,13 +75,11 @@ th{background:#1f1f23}
   cursor:pointer;
 }
 
-/* TOTAL */
 .total-box{max-width:420px;margin-left:auto;margin-top:18px}
 .total-box div{display:flex;justify-content:space-between;padding:6px 0}
 .grand{font-size:18px;font-weight:bold;border-top:1px solid #3f3f46;padding-top:8px}
 .error{color:#f87171;font-size:12px}
 
-/* 🖨️ PRINT MODE */
 @media print{
   body{background:#fff}
   .invoice{color:#000}
@@ -110,13 +101,12 @@ th{background:#1f1f23}
   </div>
   <div class="col">
     <label>Company GSTIN</label>
-    <input id="cgstin" oninput="validateGST(this)">
+    <input id="cgstin" value="37AALCT9788L1Z3" oninput="validateGST(this)">
     <div id="gstErr" class="error"></div>
   </div>
   <div class="col">
     <label>Company State</label>
-<input value="AndhraPradesh">
-    
+    <input value="AndhraPradesh">
   </div>
 </div>
 
@@ -175,7 +165,6 @@ th{background:#1f1f23}
 <script>
 date.value=new Date().toISOString().slice(0,10)
 
-/* Invoice No */
 let n=localStorage.getItem("invoiceNo")||0
 n++;localStorage.setItem("invoiceNo",n)
 inv.value="INV-"+String(n).padStart(4,"0")
