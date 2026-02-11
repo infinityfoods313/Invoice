@@ -80,11 +80,61 @@ th{background:#1f1f23}
 .grand{font-size:18px;font-weight:bold;border-top:1px solid #3f3f46;padding-top:8px}
 .error{color:#f87171;font-size:12px}
 
+/* ✅ PRINT FIX + HEADER REPEAT + PAGE CONTROL */
 @media print{
-  body{background:#fff}
-  .invoice{color:#000}
+
+  @page{
+    size:A4;
+    margin:10mm;
+  }
+
+  body{
+    background:#fff;
+    margin:0;
+  }
+
+  .invoice{
+    color:#000;
+    box-shadow:none;
+    border-radius:0;
+    page-break-inside:auto;
+  }
+
+  h2{color:#008080}
+
+  label, th{
+    color:#008080 !important;
+  }
+
+  td, input, textarea, select, span, small{
+    color:#000 !important;
+  }
+
+  .grand{color:#008080 !important}
+
+  table{
+    page-break-inside:auto;
+  }
+
+  tr{
+    page-break-inside:avoid;
+    page-break-after:auto;
+  }
+
+  thead{
+    display:table-header-group; /* repeat header on next page */
+  }
+
+  tfoot{
+    display:table-footer-group;
+  }
+
   .btn,.no-print{display:none !important}
-  input,textarea,select{border:none;background:none;color:#000}
+
+  input,textarea,select{
+    border:none;
+    background:none;
+  }
 }
 </style>
 </head>
@@ -115,9 +165,7 @@ th{background:#1f1f23}
 <div class="row">
   <div class="col">
     <label>Bill To</label>
- <input value="INFINITY Commission From Restaurant">
-
-    
+    <input value=" Commission From Restaurant">
   </div>
   <div class="col">
     <label>Place of Supply</label>
