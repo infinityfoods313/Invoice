@@ -80,7 +80,6 @@ th{background:#1f1f23}
 .grand{font-size:18px;font-weight:bold;border-top:1px solid #3f3f46;padding-top:8px}
 .error{color:#f87171;font-size:12px}
 
-/* ✅ PRINT FIX + HEADER REPEAT + PAGE CONTROL */
 @media print{
 
   @page{
@@ -122,7 +121,7 @@ th{background:#1f1f23}
   }
 
   thead{
-    display:table-header-group; /* repeat header on next page */
+    display:table-header-group;
   }
 
   tfoot{
@@ -234,20 +233,29 @@ function addRow(){
 addRow()
 
 function calc(){
-  let sub=0
+  let subtotal=0
   document.querySelectorAll("#tbl tbody tr").forEach(r=>{
     let q=+r.children[1].querySelector("input").value
     let p=+r.children[2].querySelector("input").value
     let a=q*p
     r.querySelector(".amt").innerText=a.toFixed(2)
-    sub+=a
+    subtotal+=a
   })
+
   let gstv=+gst.value
-  let tax=sub*gstv/100
-  taxLines.innerHTML=gstv?`<div><span>GST ${gstv}%</span><span>₹${tax.toFixed(2)}</span></div>`:""
-  sub.innerText="₹"+sub.toFixed(2)
-  grand.innerText="₹"+Math.round(sub+tax)
-  words.innerText=toWords(Math.round(sub+tax))
+  let cgst=subtotal*(gstv/2)/100
+  let sgst=subtotal*(gstv/2)/100
+
+  taxLines.innerHTML=gstv?`
+  <div><span>CGST ${gstv/2}%</span><span>₹${cgst.toFixed(2)}</span></div>
+  <div><span>SGST ${gstv/2}%</span><span>₹${sgst.toFixed(2)}</span></div>`:""
+
+  sub.innerText="₹"+subtotal.toFixed(2)
+
+  let total=Math.round(subtotal+cgst+sgst)
+  grand.innerText="₹"+total
+
+  words.innerText=toWords(total)
 }
 
 function validateGST(el){
